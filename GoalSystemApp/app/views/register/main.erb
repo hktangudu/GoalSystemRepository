@@ -1,0 +1,72 @@
+<head >
+<style>
+  .ui-dialog-titlebar {
+    background:transparent;
+    border:none;
+    visibility: visible;
+  }
+
+  .ui-dialog .ui-dialog-titlebar-close {
+    right:0;
+  }
+</style>
+
+
+<script >
+$(document).ready(function(){
+  $("#dialog").dialog({
+        autoOpen: false,
+        modal: true,
+        open: function(){
+            jQuery('.ui-widget-overlay').bind('click',function(){
+                jQuery('#dialog').dialog('close');
+            })
+        }
+    });
+$("a").click(function(event)
+{
+  $('#dialog').dialog('open');
+    $(".ui-dialog-titlebar").css('visibility','visible');
+    $(".ui-dialog-titlebar-close").css('visibility','visible');
+});
+
+$("#cancel").click(function()
+{
+  $('#dialog').dialog('close');
+   
+});
+});
+</script>
+</head>
+<body style= "background-image:url(<%= asset_path 'Elegant_Background-7.jpg' %>); background-size:cover; background-repeat:norepeat; height:100%; width:100%" >
+
+<div align="right" style="padding-right:3em; font-weight:bold">Logged In User : <%= @user.name %>
+</br>  
+  <a id="cp" href ="#">Change Password</a>
+</br>
+  <%= button_to 'Logout' ,action: 'logout',:id => 'signout', style: "background-color:Transparent"%>
+</div>
+
+
+
+<div id="dialog">
+  <div id="pop">
+    <table>
+      <tr>
+        <td style="font-weight:bold">Old Password</td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">New Password</td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Confirm Password</td>
+        <td><input type="text"></td>
+      </tr>
+
+    </table>
+    <p align="right"><input id="ok" type="submit" value="Ok" style="margin-right:1em"><input id="cancel" "cancel" type="submit" value="Cancel" style="margin-right:0em"></p>
+  </div>
+</div>
+</body>

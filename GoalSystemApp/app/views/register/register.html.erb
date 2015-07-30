@@ -1,0 +1,96 @@
+<head >
+<style>
+/*.headerlogo{
+   background-image:url(<%= asset_path 'apple.jpg' %>); 
+  background-size: cover; 
+  background-repeat: no-repeat;
+  width: 100%;
+}
+*/
+td {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+</style>
+<script type="text/javascript">
+  function RegisterMouseincolorFunction(){
+  var btn = document.getElementById("form").reg;
+  
+    btn.style.background = "lightblue";
+  }
+  function RegisterMouseOutColorFunction()
+  {
+    var btn = document.getElementById("form").reg;
+    btn.style.background = "Transparent";
+  }
+</script>
+</head>
+<body style= "background-image:url(<%= asset_path 'Elegant_Background-7.jpg' %>); background-size:cover; background-repeat:norepeat; height:100%; width:100%" >
+  
+
+ <div class="header" >
+  <h2 align="center" style="background-image:url(<%=asset_path 'img.jpg'%>)">Welcome</h2>
+ </div>
+  <% if flash[:logout] %>
+    <h3><font color="blue"><%= flash[:logout] %></font></h3>
+ <% end %>
+
+
+<h1>Sign up</h1>
+<div class="register" align="center" style="width:400px">
+<%= form_for @user, :url => {action: "CreateUser" }, :html => {:id => "form"} do |f| %>
+<fieldset style=" border:10px; border-image:url(<%= asset_path 'border2.png' %>) 25% round; ">
+
+	<legend style="font-weight:bold">New Registration Information</legend>
+
+
+<table>
+<tr>
+  <td style="font-weight:bold; font-size:20px"><%= f.label "Name" %></td>
+  <td align="center"><%= f.text_field :name %></td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold; font-size:20px"><%= f.label "Email" %></td>
+  <td align="center"><%= f.text_field :emailid %></td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold; font-size:20px"><%= f.label "Password" %></td>
+  <td align="center"><%= f.password_field :password %></td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold; font-size:20px"><%= f.label "Confirmation" %></td>
+  <td align="center"><%= f.password_field :password_confirmation %></td>
+</tr>
+
+</table>
+</br>
+</br>
+<span style="padding-left: 0em"><%= f.submit "Register", style: "background-color:Transparent; font-weight:bold" , :id => 'reg', :onMouseOver => "RegisterMouseincolorFunction()", :onMouseOut => "RegisterMouseOutColorFunction()"%></span>
+</br>
+
+</fieldset>
+</br>
+
+</div>
+<p style="font-size:20px;">
+<%= link_to 'Signin' ,action: 'signin'%>
+</p>
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"><%= pluralize(@user.errors.count, "error") %> prohibited this register from being saved:</font></h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><font color="red"><%= message %></font></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+</br>
+
+</body>

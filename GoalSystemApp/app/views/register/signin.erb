@@ -1,0 +1,50 @@
+<head >
+<style>
+td{
+	padding-top: 0.5em;
+	padding-bottom: 0.5em
+}
+
+</style>
+<script type="text/javascript">
+	function SignMouseincolorFunction(){
+	var btn = document.getElementById("for").sign;
+	
+		btn.style.background = "lightblue";
+	}
+	function SignMouseOutColorFunction()
+	{
+		var btn = document.getElementById("for").sign;
+		btn.style.background = "Transparent";
+	}
+</script>
+</head>
+<body style= "background-image:url(<%= asset_path 'Elegant_Background-7.jpg' %>); background-size:cover; background-repeat:norepeat; height:100%; width:100%" >
+
+<h1>Sign in</h1>
+<div class="signin" align="center" style="width:400px">
+<%= form_for  @user,:as => "user", :url => {action: "authenticateuser" }, :html => {:id => "for"} do |f| %>
+<fieldset style=" border:10px; border-image:url(<%= asset_path 'border2.png' %>) 25% round;">
+	<legend style="font-weight:bold">SignIn Information</legend>
+<table>
+<tr>
+	<td style="font-weight:bold; font-size:20px"><%= f.label "Email" %></td>
+	<td><%= f.text_field :emailid ,:autofocus => "true"%></td>
+</tr>
+
+
+<tr>
+	<td style="font-weight:bold; font-size:20px"><%= f.label "Password" %></td>
+	<td><%= f.password_field :password %></td>
+</tr>
+</table>
+</br>
+<span style="padding-left:0em"><%= f.submit "Sign in", style: "background-color:Transparent; font-weight:bold" ,:id =>'sign', :onMouseOver => "SignMouseincolorFunction()", :onMouseOut => "SignMouseOutColorFunction()"%></span>
+</p>
+</fieldset>
+</div>
+<% end %>
+<% if flash[:notice] %>
+    <div class="notice"><h3><font color="blue"><%= flash[:notice] %></font></h3></div>
+ <% end %>
+</body>
