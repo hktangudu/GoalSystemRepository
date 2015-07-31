@@ -23,6 +23,10 @@ $(document).ready(function(){
             })
         }
     });
+$('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+})
 $("a").click(function(event)
 {
   $('#dialog').dialog('open');
@@ -40,13 +44,48 @@ $("#cancel").click(function()
 </head>
 <body style= "background-image:url(<%= asset_path 'Elegant_Background-7.jpg' %>); background-size:cover; background-repeat:norepeat; height:100%; width:100%" >
 
+
+
+
 <div align="right" style="padding-right:3em; font-weight:bold">Logged In User : <%= @user.name %>
 </br>  
   <a id="cp" href ="#">Change Password</a>
 </br>
+
+<div align="left" >
+  <select > 
+    <option value="volvo">Goals DashBoard</option>
+    <option value="dashboard" selected>DashBoard</option>
+  </select>
+
+  <select > 
+    <option value="dialygoals">Dialy Goals</option>
+    <option value="longtermgoals">Long Term Goals</option>
+    <option value="weeklyfeedback">Weekly Feedback</option>
+    <option value="apprisalform">Apprisal Form</option>
+    <option value="goals" selected>goals</option>
+  </select>
+
+  <select > 
+    <option value="projects">Projects</option>
+    <option value="projects">Section & Team</option>
+    <option value="items">Items</option>
+    <option value="builds">Builds</option>
+    <option value="projectmanagement" selected>Project Management</option>
+  </select>
+
+  <select > 
+    <option value="tips">Tips</option>
+    <option value="knowledgebase" selected>Knowledge Base</option>
+  </select>
+</div>
+
   <%= button_to 'Logout' ,action: 'logout',:id => 'signout', style: "background-color:Transparent"%>
 </div>
 
+<div>
+  <input data-provide="datepicker">
+</div>                                                                                 
 
 
 <div id="dialog">
